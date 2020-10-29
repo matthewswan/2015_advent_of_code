@@ -37,7 +37,7 @@ func (s *Santa) right() {
 }
 
 func main() {
-	input, err := ioutil.ReadFile("day-3-part-2-input.txt")
+	input, err := ioutil.ReadFile("day-3-input.txt")
 	if err != nil {
 		panic(err)
 	}
