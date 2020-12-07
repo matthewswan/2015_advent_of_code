@@ -31,21 +31,25 @@ func main() {
 		for x := start[0]; x <= finish[0]; x++ {
 			for y := start[1]; y <= finish[1]; y++ {
 				if match := turnOnRegex.FindString(instruction); match != "" {
+					if !grid[x][y] {
+						lightsOnCount++
+					}
 					grid[x][y] = true
 				}
 				if match := turnOffRegex.FindString(instruction); match != "" {
+					if grid[x][y] {
+						lightsOnCount--
+					}
 					grid[x][y] = false
 				}
 				if match := toggleRegex.FindString(instruction); match != "" {
+					if grid[x][y] {
+						lightsOnCount--
+					} else {
+						lightsOnCount++
+					}
 					grid[x][y] = !grid[x][y]
 				}
-			}
-		}
-	}
-	for i, _ := range grid[0] {
-		for j, _ := range grid[1] {
-			if grid[i][j] {
-				lightsOnCount++
 			}
 		}
 	}
