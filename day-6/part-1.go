@@ -52,17 +52,15 @@ func main() {
 	fmt.Printf("The number of lights on: %d\n", lightsOnCount)
 }
 
-func convertInstruction(str []string) []int {
-	strSlice := make([]int, 0)
-	for _, s := range str {
-		i, _ := strconv.Atoi(s)
-		strSlice = append(strSlice, i)
+func convertInstruction(strSlice []string) (intSlice []int) {
+	for _, str := range strSlice {
+		i, _ := strconv.Atoi(str)
+		intSlice = append(intSlice, i)
 	}
-	return strSlice
+	return intSlice
 }
 
 func findInstructions(instr string) ([]string, []string) {
-	fromRegex := regexp.MustCompile("\\d+,\\d+")
-	toRegex := regexp.MustCompile("\\d+,\\d+$")
+	fromRegex, toRegex := regexp.MustCompile("\\d+,\\d+"), regexp.MustCompile("\\d+,\\d+$")
 	return strings.Split(fromRegex.FindString(instr), ","), strings.Split(toRegex.FindString(instr), ",")
 }
